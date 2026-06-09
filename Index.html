@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación a Grados - Janieth Indira Vivas Maturana</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Sue+Ellen+Francisco&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: #000;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            color: #333;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .page {
+            display: none;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .page.active {
+            display: flex;
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* ========== HOJA 1 - PORTADA ========== */
+        .page-1 {
+            background: linear-gradient(135deg, #FFEE8C 0%, #FFF8DC 100%);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-1::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .page-1::after {
+            content: '';
+            position: absolute;
+            bottom: -80px;
+            left: -80px;
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .content-1 {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title-main {
+            font-family: 'Sue Ellen Francisco', cursive;
+            font-size: 64px;
+            font-weight: 400;
+            color: #8B6914;
+            margin: 30px 0;
+            letter-spacing: 2px;
+        }
+
+        .subtitle-main {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            color: #555;
+            margin: 20px 0 40px 0;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .photo-container {
+            margin: 40px 0;
+        }
+
+        .photo-circle {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            margin: 0 auto;
+            border: 6px solid #2c2c2c;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            background: white;
+        }
+
+        .photo-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+
+        .photo-circle {
+            cursor: pointer;
+            position: relative;
+        }
+
+        .photo-circle:hover::after {
+            content: '📷 Subir foto';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.45);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            font-size: 15px;
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        #photoInput { display: none; }
+
+        .description {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #444;
+            margin: 40px 0;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        .gratitude {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-style: italic;
+            color: #2c2c2c;
+            margin-top: 30px;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+
+        /* ========== HOJA 2 - MENSAJE ========== */
+        .page-2 {
+            background: linear-gradient(135deg, #FFEE8C 0%, #FFF8DC 100%);
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 70px 50px;
+            overflow-y: auto;
+        }
+
+        .content-2 {
+            max-width: 800px;
+            position: relative;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .message-title {
+            font-family: 'Cormorant Garamond', serif;
+            text-align: center;
+            font-size: 42px;
+            color: #2c2c2c;
+            margin-bottom: 15px;
+            font-style: italic;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .message-subtitle {
+            text-align: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .verse-reference {
+            text-align: center;
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 40px;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .message-text {
+            font-size: 16px;
+            line-height: 1.9;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: justify;
+            font-weight: 400;
+        }
+
+        .message-text p {
+            margin-bottom: 20px;
+            text-indent: 30px;
+        }
+
+        .signature {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+        }
+
+        .signature-closing {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            color: #2c2c2c;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .signature-verse {
+            font-size: 14px;
+            color: #666;
+            font-style: italic;
+            margin-top: 25px;
+            line-height: 1.6;
+        }
+
+        /* ========== HOJA 3 - RECEPCIÓN ========== */
+        .page-3 {
+            background: linear-gradient(135deg, #FFEE8C 0%, #FFF8DC 100%);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .content-3 {
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.96);
+            padding: 70px 60px;
+            border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .reception-intro {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            color: #444;
+            margin-bottom: 50px;
+            line-height: 1.7;
+            font-style: italic;
+        }
+
+        .event-details {
+            margin: 40px 0;
+        }
+
+        .event-row {
+            margin: 35px 0;
+            text-align: center;
+        }
+
+        .event-label {
+            font-family: 'Cormorant Garamond', serif;
+            color: #2c2c2c;
+            font-weight: 600;
+            display: block;
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .event-value {
+            font-size: 18px;
+            color: #555;
+            font-weight: 400;
+            line-height: 1.6;
+        }
+
+        .ornament-divider {
+            margin: 50px 0;
+            font-size: 22px;
+            color: #FFEE8C;
+            letter-spacing: 4px;
+            font-weight: bold;
+        }
+
+        .map-button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 14px 40px;
+            background: linear-gradient(135deg, #FFEE8C 0%, #FFE680 100%);
+            color: #2c2c2c;
+            border: 2px solid #2c2c2c;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .map-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(44, 44, 44, 0.2);
+        }
+
+        /* ========== HOJA 4 - CONFIRMACIÓN ========== */
+        .page-4 {
+            background: linear-gradient(135deg, #FFEE8C 0%, #FFF8DC 100%);
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 60px 40px;
+            overflow-y: auto;
+        }
+
+        .content-4 {
+            max-width: 700px;
+            background: rgba(255, 255, 255, 0.96);
+            padding: 70px 60px;
+            border-radius: 15px;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+            animation: slideIn 0.8s ease-out;
+            margin: 40px 0;
+        }
+
+        .form-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36px;
+            color: #2c2c2c;
+            margin-bottom: 15px;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .form-subtitle {
+            font-size: 15px;
+            color: #666;
+            margin-bottom: 50px;
+            line-height: 1.7;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #2c2c2c;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #FFEE8C;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+            background: #fafaf8;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2c2c2c;
+            box-shadow: 0 0 10px rgba(44, 44, 44, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #FFEE8C 0%, #FFE680 100%);
+            color: #2c2c2c;
+            border: 2px solid #2c2c2c;
+            border-radius: 8px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s;
+            margin-top: 30px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(44, 44, 44, 0.2);
+        }
+
+        /* ========== NAVEGACIÓN ========== */
+        .nav-controls {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 25px;
+            z-index: 100;
+        }
+
+        .nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #2c2c2c;
+            color: #FFEE8C;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-btn:hover:not(:disabled) {
+            background: #FFEE8C;
+            color: #2c2c2c;
+            transform: scale(1.1);
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .page-counter {
+            position: fixed;
+            top: 30px;
+            right: 40px;
+            color: #2c2c2c;
+            font-size: 16px;
+            font-weight: 600;
+            background: #FFEE8C;
+            padding: 10px 20px;
+            border-radius: 20px;
+            z-index: 100;
+            border: 2px solid #2c2c2c;
+        }
+
+        .page-dots {
+            position: fixed;
+            top: 30px;
+            left: 40px;
+            display: flex;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(44, 44, 44, 0.4);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #2c2c2c;
+        }
+
+        .dot:hover {
+            background: rgba(44, 44, 44, 0.8);
+        }
+
+        .dot.active {
+            background: #2c2c2c;
+            width: 28px;
+            border-radius: 6px;
+        }
+
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 15px 60px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            z-index: 1000;
+            max-width: 500px;
+            animation: popIn 0.5s ease-out;
+            border: 3px solid #FFEE8C;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%) scale(1);
+            }
+        }
+
+        .success-message h2 {
+            font-family: 'Cormorant Garamond', serif;
+            color: #2c2c2c;
+            font-size: 32px;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .success-message p {
+            color: #666;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .success-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        @media (max-width: 768px) {
+            .title-main { font-size: 48px; }
+            .message-title { font-size: 32px; }
+            .photo-circle { width: 180px; height: 180px; }
+            .page-2 { padding: 50px 25px; }
+            .content-2 { max-width: 100%; }
+            .message-text { font-size: 15px; }
+            .content-3, .content-4 { padding: 50px 30px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- ========== HOJA 1 - PORTADA ========== -->
+        <div class="page page-1 active">
+            <div class="content-1">
+                <h1 class="title-main">Janieth Indira Vivas Maturana</h1>
+                <h2 class="subtitle-main">Médica General</h2>
+                
+                <div class="photo-container">
+                    <div class="photo-circle" onclick="document.getElementById('photoInput').click()">
+                        <img id="profilePhoto" src="" alt="Médica" style="display:none;">
+                        <div id="photoPlaceholder" style="width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#888;font-size:14px;font-family:'Lora',serif;">
+                            <span style="font-size:36px;">📷</span>
+                            <span>Toca para subir<br>tu foto</span>
+                        </div>
+                        <input type="file" id="photoInput" accept="image/*">
+                    </div>
+                </div>
+
+                <p class="description">
+                    Un camino y una historia que inició en manos de Dios y que se cosechó en Sus manos, se cumple con mi pregrado el 31 de julio de 2026, con la misión de sanar no solo el cuerpo, sino el alma de los pacientes.
+                </p>
+
+                <p class="gratitude">
+                    Con gratitud infinita a Dios, autor de mi historia y arquitecto de Su propósito en mí.
+                </p>
+            </div>
+        </div>
+
+        <!-- ========== HOJA 2 - MENSAJE ========== -->
+        <div class="page page-2">
+            <div class="content-2">
+                <h2 class="message-title">La Historia Que Dios Escribió:</h2>
+                <p class="message-subtitle">Una Vocación con Propósito</p>
+                
+                <p class="message-subtitle">Porque de Él, por Él y para Él son todas las cosas.</p>
+                <p class="verse-reference">Romanos 11:36</p>
+
+                <div class="message-text">
+                    <p>Hay sueños que nacen en el corazón mucho antes de que podamos comprender su significado. En mi vida, la medicina fue una de esas semillas que Dios plantó con amor y propósito. A través de los años, ese anhelo de servir, acompañar y brindar esperanza fue creciendo silenciosamente, moldeando mi carácter y preparándome para el llamado que hoy se hace realidad.</p>
+
+                    <p>Cada experiencia, cada aprendizaje y cada desafío fueron parte del proceso mediante el cual Dios fue revelando Su plan. Antes de que mi corazón comprendiera la magnitud de este llamado, Él ya había escrito esta historia con perfección. Recuerdo haber estado siempre rodeada de libros, pero fue el instante en que sostuve por primera vez un libro de medicina lo que encendió definitivamente el chip en mi sentir.</p>
+
+                    <p>Hoy, al mirar atrás, puedo contemplar Su fidelidad reflejada en cada paso de este camino. Lo que un día fue un sueño sembrado en mi interior, hoy se convierte en una hermosa realidad, alcanzada con esfuerzo, perseverancia y fe. Cada sacrificio tuvo un propósito; cada desafío, una enseñanza; y cada lágrima derramada, una razón para seguir adelante. En los momentos de incertidumbre, Su gracia me sostuvo; en los tiempos de espera, Su amor me fortaleció; y en cada etapa del camino, Sus promesas me recordaron que nunca caminaba sola.</p>
+
+                    <p>Este logro representa mucho más que la culminación de una etapa académica. Es la confirmación de un propósito y el comienzo de una misión de servicio, amor y entrega. Llevar esta bata simboliza el compromiso de servir con humanidad, compasión y excelencia, honrando a Dios en cada vida que tenga el privilegio de acompañar.</p>
+
+                    <p>Con un corazón desbordante de agradecimiento, comparto contigo la alegría de este momento tan significativo.</p>
+                </div>
+
+                <div class="signature">
+                    <p class="signature-closing">Con cariño y gratitud,</p>
+                    <p class="signature-verse">Los sueños inspirados por Dios encuentran su cumplimiento en el tiempo perfecto de Dios.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========== HOJA 3 - RECEPCIÓN ========== -->
+        <div class="page page-3">
+            <div class="content-3">
+                <p class="reception-intro">
+                    Con mucho amor y alegría, te invito a acompañarme a una recepción especial de este logro como entrega al servicio a través de la medicina.
+                </p>
+
+                <div class="event-details">
+                    <div class="event-row">
+                        <span class="event-label">📅 Fecha</span>
+                        <span class="event-value">Viernes, 31 de Julio de 2026</span>
+                    </div>
+
+                    <div class="event-row">
+                        <span class="event-label">🕖 Hora</span>
+                        <span class="event-value">19:00 H</span>
+                    </div>
+
+                    <div class="event-row">
+                        <span class="event-label">📍 Ubicación</span>
+                        <span class="event-value">Al Patio Beef & Bar</span>
+                    </div>
+
+                    <div class="event-row">
+                        <span class="event-label">🗺️ Dirección</span>
+                        <span class="event-value">
+                            <a href="https://maps.app.goo.gl/QaBHKpdYgSjRGe6V7" target="_blank" style="color:#8B6914; text-decoration:underline; font-weight:600;">
+                                Cra 38 No 19-269<br>Km 2 Vía Las Palmas<br>Medellín, Antioquia
+                            </a>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="ornament-divider">✦ ✦ ✦</div>
+
+                <a href="https://maps.app.goo.gl/QaBHKpdYgSjRGe6V7" target="_blank" class="map-button">📍 Ver Mapa</a>
+            </div>
+        </div>
+
+        <!-- ========== HOJA 4 - CONFIRMACIÓN ========== -->
+        <div class="page page-4">
+            <div class="content-4">
+                <h2 class="form-title">Confirma tu Asistencia</h2>
+                <p class="form-subtitle">Por favor, completa este formulario antes del 24 de julio</p>
+
+                <form id="attendanceForm">
+                    <div class="form-group">
+                        <label for="name">Nombre Completo *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="attendance">¿Asistirás? *</label>
+                        <select id="attendance" name="attendance" required>
+                            <option value="">-- Selecciona una opción --</option>
+                            <option value="Sí, asistiré">✓ Sí, asistiré</option>
+                            <option value="No, no podré asistir">✗ No, no podré asistir</option>
+                            <option value="Aún no sé">? Aún no sé</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-btn">📬 Enviar Confirmación</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTROLES DE NAVEGACIÓN -->
+    <div class="page-counter">
+        <span id="currentPage">1</span> / 4
+    </div>
+
+    <div class="page-dots">
+        <div class="dot active" data-page="0"></div>
+        <div class="dot" data-page="1"></div>
+        <div class="dot" data-page="2"></div>
+        <div class="dot" data-page="3"></div>
+    </div>
+
+    <div class="nav-controls">
+        <button class="nav-btn" id="prevBtn" onclick="previousPage()">❮</button>
+        <button class="nav-btn" id="nextBtn" onclick="nextPage()">❯</button>
+    </div>
+
+    <!-- MENSAJE DE ÉXITO -->
+    <div class="success-overlay" id="successOverlay"></div>
+    <div class="success-message" id="successMessage">
+        <h2>¡Gracias! 💛</h2>
+        <p>Tu confirmación ha sido registrada exitosamente. Nos vemos el 31 de julio. ¡Que Dios te bendiga!</p>
+    </div>
+
+    <script>
+        let currentPage = 0;
+        const pages = document.querySelectorAll('.page');
+        const totalPages = pages.length;
+
+        function showPage(n) {
+            pages.forEach(page => page.classList.remove('active'));
+            pages[n].classList.add('active');
+            
+            document.getElementById('currentPage').textContent = n + 1;
+            document.getElementById('prevBtn').disabled = n === 0;
+            document.getElementById('nextBtn').disabled = n === totalPages - 1;
+            
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === n);
+            });
+
+            window.scrollTo(0, 0);
+        }
+
+        function nextPage() {
+            if (currentPage < totalPages - 1) {
+                currentPage++;
+                showPage(currentPage);
+            }
+        }
+
+        function previousPage() {
+            if (currentPage > 0) {
+                currentPage--;
+                showPage(currentPage);
+            }
+        }
+
+        document.querySelectorAll('.dot').forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentPage = index;
+                showPage(currentPage);
+            });
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') nextPage();
+            if (e.key === 'ArrowLeft') previousPage();
+        });
+
+        document.getElementById('attendanceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby4dNZlQdyHZKC4WRYYURJgm73ILUl3DgtVAVtBGXhwbhSIFA_ozOyQy3KuNOQMSlmn/exec';
+            
+            const formData = {
+                nombre: document.getElementById('name').value,
+                asistencia: document.getElementById('attendance').value
+            };
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById('successOverlay').style.display = 'block';
+                    document.getElementById('successMessage').style.display = 'block';
+                    document.getElementById('attendanceForm').reset();
+                    
+                    setTimeout(() => {
+                        document.getElementById('successOverlay').style.display = 'none';
+                        document.getElementById('successMessage').style.display = 'none';
+                    }, 3500);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Hubo un error al enviar. Intenta de nuevo.');
+            });
+        });
+
+        document.getElementById('photoInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                const img = document.getElementById('profilePhoto');
+                img.src = ev.target.result;
+                img.style.display = 'block';
+                document.getElementById('photoPlaceholder').style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        });
+
+        showPage(0);
+    </script>
+</body>
+</html>
