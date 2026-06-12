@@ -260,11 +260,11 @@
         .gratitude { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-style: italic; color: #000; margin-top: 30px; font-weight: 500; letter-spacing: 1px; text-align: center; }
 
         /* PÁGINA 2 - MENSAJES (antes pág 5) */
-        .page-2 { background: linear-gradient(135deg, #FFEE8C 0%, #FFF8DC 100%); flex-direction: column; align-items: center; justify-content: center; padding: 40px 30px; overflow-y: auto; }
+        .page-3 { background: linear-gradient(135deg, #FFEE8C 0%, #FFF8DC 100%); flex-direction: column; align-items: center; justify-content: center; padding: 40px 30px; overflow-y: auto; }
         .content-2msg { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px 30px; gap: 30px; max-width: 500px; width: 100%; }
 
         /* PÁGINA 3 - HISTORIA (antes pág 2) */
-        .page-3 { background: linear-gradient(135deg, #FFEE8C 0%, #FFF8DC 100%); flex-direction: column; align-items: center; justify-content: flex-start; padding: 70px 50px; overflow-y: auto; }
+        .page-2 { background: linear-gradient(135deg, #FFEE8C 0%, #FFF8DC 100%); flex-direction: column; align-items: center; justify-content: flex-start; padding: 70px 50px; overflow-y: auto; }
         .content-3hist { max-width: 800px; position: relative; animation: fadeInUp 1s ease-out; }
         .message-title { font-family: 'Cormorant Garamond', serif; text-align: center; font-size: 42px; color: #000; margin-bottom: 15px; font-style: italic; font-weight: 600; letter-spacing: 1px; }
         .message-subtitle { text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 18px; color: #000; margin-bottom: 10px; font-style: italic; }
@@ -398,7 +398,7 @@
             </div>
 
             <!-- PÁGINA 2 - COMPARTE UN MENSAJE (antes pág 5) -->
-            <div class="page page-2">
+            <div class="page page-3">
                 <div class="content-2msg">
                     <h2 class="form-title">Comparte un Mensaje</h2>
                     <p class="form-subtitle">Déjame tus felicitaciones y buenos deseos en este día especial</p>
@@ -417,7 +417,7 @@
             </div>
 
             <!-- PÁGINA 3 - LA HISTORIA QUE DIOS ESCRIBIÓ (antes pág 2) -->
-            <div class="page page-3">
+            <div class="page page-2">
                 <div class="content-3hist">
                     <h1 class="message-title">La Historia Que Dios Escribió</h1>
                     <p class="message-subtitle">Una Vocación con Propósito</p>
@@ -438,7 +438,7 @@
             <!-- PÁGINA 4 - RECEPCIÓN -->
             <div class="page page-4">
                 <div class="content-4">
-                    <h2 class="reception-title">Recepción Especial</h2>
+                    <h2 class="reception-title">Compartiendo mi alegria</h2>
                     <p class="reception-intro">Con mucho amor y alegría, te invito a acompañarme a una recepción especial de este logro como entrega al servicio a través de la medicina.</p>
                     <div class="event-details">
                         <div class="event-row">
@@ -466,7 +466,7 @@
             <div class="page page-5">
                 <div class="content-5">
                     <h2 class="form-title">Confirma tu Asistencia</h2>
-                    <p class="form-subtitle">Por favor, completa este formulario antes del 24 de julio</p>
+                    <p class="form-subtitle">Diligecia tu asistencia hasta el 24 de julio</p>
                     <form id="attendanceForm">
                         <div class="form-group">
                             <label for="name">Nombre Completo *</label>
@@ -477,8 +477,6 @@
                             <select id="attendance" name="attendance" required>
                                 <option value="">-- Selecciona una opción --</option>
                                 <option value="Sí, asistiré (máximo 1 cupo)">✓ Sí, asistiré (máximo 1 cupo)</option>
-                                <option value="No, no podré asistir">✗ No, no podré asistir</option>
-                                <option value="Aún no sé">? Aún no sé</option>
                             </select>
                         </div>
                         <button type="submit" class="submit-btn">📬 Enviar Confirmación</button>
